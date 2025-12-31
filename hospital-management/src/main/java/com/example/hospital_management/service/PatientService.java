@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import com.example.hospital_management.dto.PatientDto;
 import com.example.hospital_management.entity.Patient;
 import com.example.hospital_management.repository.PatientRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
