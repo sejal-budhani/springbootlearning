@@ -2,13 +2,17 @@ package com.example.hospital_management.entity;
 
 import com.example.hospital_management.entity.type.BloodGroup;
 import jakarta.persistence.*;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Table(
         uniqueConstraints = {
