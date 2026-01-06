@@ -13,6 +13,7 @@ public class KafkaService {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
+//    for logging
     Logger logger = LoggerFactory.getLogger(KafkaService.class);
 
     public boolean updateLocation(String location) {
