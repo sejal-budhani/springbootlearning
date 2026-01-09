@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,5 +45,16 @@ public class Patient {
 
     @Enumerated(EnumType.STRING)
     private BloodGroup bloodGroup;
+
+    @OneToOne
+    @JoinColumn(name = "patient_insurance_id") // If we don't add this, the default foreign key name would be concatenation of insurance + PK of insurance table i.e insurance_id
+//    This is the owning side, as we are adding the foreign key to insurance in Patient table, whereas Insurance table would be Inverse side
+//    This is because, the insurance cannot exist without a patient and there can be only one insurance for a patient
+//    To avoid confusion to hibernate, we just add mappedby property in insurance table, but its not actually foreign key connected from insurance side
+    private Insurance insurance;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
+
 
 }
