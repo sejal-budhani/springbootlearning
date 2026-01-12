@@ -3,7 +3,9 @@ package com.example.hospital_management.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -26,7 +28,10 @@ public class Doctor {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<Appointment> appointments;
 
+    @ManyToMany(mappedBy = "doctors", fetch = FetchType.EAGER)
+    private Set<Department> departments = new HashSet<>();
 }
