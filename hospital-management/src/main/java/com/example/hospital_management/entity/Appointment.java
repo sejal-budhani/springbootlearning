@@ -26,12 +26,14 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
+    @ToString.Exclude
 //    Here we have kept Appointment as owning side and patient as inverse side, because there is no appointment without patient and patient can have one or more appointment
 //    Whereas in case of patient and insurance, a patient can have only one insurance
     private Patient patient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
+    @ToString.Exclude
     private Doctor doctor;
 
 }

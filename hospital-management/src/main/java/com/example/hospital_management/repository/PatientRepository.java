@@ -47,4 +47,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query("SELECT p from Patient p")
     Page<Patient> findAllPatients(Pageable pageable);
+
+//    @Query("Select p from Patient p LEFT JOIN FETCH p.appointments a LEFT JOIN FETCH a.doctor")
+    @Query("Select p from Patient p LEFT JOIN FETCH p.appointments")
+    List<Patient> findAllPatientWithAppointments();
 }

@@ -46,7 +46,10 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private BloodGroup bloodGroup;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+
+//    When you want to remove the child when the parent gets removed, keep CascadeType.REMOVE
+//    But if we want to remove child even when parent still exists, then keep orphanRemoval as true, this will remove any non referenced child
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "patient_insurance_id") // If we don't add this, the default foreign key name would be concatenation of insurance + PK of insurance table i.e insurance_id
 //    This is the owning side, as we are adding the foreign key to insurance in Patient table, whereas Insurance table would be Inverse side
 //    This is because, the insurance cannot exist without a patient and there can be only one insurance for a patient
@@ -54,7 +57,6 @@ public class Patient {
     private Insurance insurance;
 
     @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @ToString.Exclude
     private List<Appointment> appointments;
 
 
